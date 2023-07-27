@@ -5,7 +5,13 @@ export const getAllProductsFromDatabase = async (queryString) => {
         const {rows} = await client.query(
             queryString
         )
-        return JSON.stringify(rows,null,2);
+        console.log(rows.lenght,typeof rows)
+        return JSON.stringify({
+            
+            nbProducts : Array(rows).length,
+            data : rows
+        },null,2);
+        
     }finally{
         client.release()
     }
